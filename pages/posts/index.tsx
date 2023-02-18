@@ -7,6 +7,7 @@ import Head from "next/head";
 import Loading from "../../components/Loading";
 import RandomImage from "../../components/RandomImage";
 import Card from "../../components/Card";
+import { fetchAllPost } from "../../api/postQueries";
 
 type Props = {
   posts: Post[];
@@ -57,8 +58,7 @@ const Posts = ({ posts, currentPage, total }: Props) => {
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   try {
     const page = query.page ? parseInt(query.page.toString(), 10) : 1;
-    const res = await fetch("https://jsonplaceholder.typicode.com/posts");
-    const posts = await res.json();
+    const posts = await fetchAllPost();
 
     const startIndex = (page - 1) * 10;
     const endIndex = startIndex + 10;

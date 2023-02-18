@@ -6,6 +6,7 @@ import RandomImage from "../components/RandomImage";
 import { Posts, Post } from "../models/post";
 import { Button } from "antd";
 import Card from "../components/Card";
+import { fetchAllPost } from "../api/postQueries";
 
 export default function Home({ posts }: Posts) {
   const router = useRouter();
@@ -53,8 +54,7 @@ export default function Home({ posts }: Posts) {
 
 export const getServerSideProps: GetServerSideProps = async () => {
   try {
-    const res = await fetch("https://jsonplaceholder.typicode.com/posts");
-    const posts = await res.json();
+    const posts = await fetchAllPost();
 
     return {
       props: {

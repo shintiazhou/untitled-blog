@@ -20,3 +20,21 @@ export const deletePost = async (postId: number) => {
     method: "DELETE",
   });
 };
+export const fetchPost = async (postId: string | undefined) => {
+  const post = await fetch("https://jsonplaceholder.typicode.com/posts/" + postId)
+    .then((response) => response.json())
+    .then((json) => json);
+  return post;
+};
+export const fetchAllPost = async () => {
+  const posts = await fetch("https://jsonplaceholder.typicode.com/posts")
+    .then((response) => response.json())
+    .then((json) => json);
+  return posts;
+};
+export const fetchComments = async (postId: string | undefined) => {
+  const comments = await fetch(`https://jsonplaceholder.typicode.com/posts/${postId}/comments`)
+    .then((response) => response.json())
+    .then((json) => json);
+  return comments;
+};

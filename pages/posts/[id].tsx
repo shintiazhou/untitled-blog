@@ -5,7 +5,7 @@ import { MoreOutlined } from "@ant-design/icons";
 import { Button, Dropdown, Form, Input, MenuProps, message, Modal, Popconfirm, Spin } from "antd";
 import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
-import { deletePost, updatePost } from "../../api/postQueries";
+import { deletePost, fetchComments, fetchPost, updatePost } from "../../api/postQueries";
 import RandomImage from "../../components/RandomImage";
 
 const { TextArea } = Input;
@@ -150,12 +150,8 @@ const Post = ({ post, comments }: { post: Post; comments: Comment[] }) => {
   );
 };
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const postRes = await fetch(`https://jsonplaceholder.typicode.com/posts/${context?.params?.id}`);
-  const post = await postRes.json();
-  const commentRes = await fetch(
-    `https://jsonplaceholder.typicode.com/posts/${context?.params?.id}/comments`,
-  );
-  const comments = await commentRes.json();
+  const post = await fetchPost(context?.params?.id?.toString());
+  const comments = await fetchComments(context?.params?.id?.toString());
 
   return {
     props: {
