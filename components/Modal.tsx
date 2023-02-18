@@ -8,18 +8,21 @@ type Props = {
   openModal: boolean;
   onSubmit: (x: Post) => void;
   buttonText: string;
+  modalTitle: string;
 };
 const { TextArea } = Input;
-const PostModal = ({ isLoading, setOpenModal, openModal, onSubmit, buttonText }: Props) => {
+const PostModal = ({
+  isLoading,
+  modalTitle,
+  setOpenModal,
+  openModal,
+  onSubmit,
+  buttonText,
+}: Props) => {
   const [form] = Form.useForm<Post>();
   return (
     <Spin spinning={isLoading}>
-      <Modal
-        onCancel={() => setOpenModal(false)}
-        footer={null}
-        title="Create new post"
-        open={openModal}
-      >
+      <Modal onCancel={() => setOpenModal(false)} footer={null} title={modalTitle} open={openModal}>
         <Form
           className="container max-w-[600px] flex flex-col"
           onFinish={(values) => {

@@ -13,8 +13,8 @@ export default function Home({ posts }: Posts) {
   return (
     <div>
       <Head>
-        <title>Writely</title>
-        <meta name="description" content="Writely posts" />
+        <title>Untitled Blog</title>
+        <meta name="description" content="Untitled Blog" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {posts ? (

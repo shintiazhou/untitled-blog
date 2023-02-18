@@ -68,6 +68,7 @@ const Post = ({ post, comments }: { post: Post; comments: Comment[] }) => {
         openModal={openModal}
         onSubmit={handleUpdatePost}
         buttonText={"Update Post"}
+        modalTitle={"Update Post"}
       />
       ;
       <div>

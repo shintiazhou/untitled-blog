@@ -43,6 +43,7 @@ const Posts = ({ posts, currentPage, total }: Props) => {
         openModal={openModal}
         onSubmit={handleCreatePost}
         buttonText={"Create Post"}
+        modalTitle={"Create new post"}
       />
       <div>
         <Head>
