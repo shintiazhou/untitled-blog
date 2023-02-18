@@ -2,18 +2,17 @@ import Head from "next/head";
 import React, { useState } from "react";
 import { Comment, Post } from "../../models/post";
 import { MoreOutlined } from "@ant-design/icons";
-import { Button, Dropdown, Form, Input, MenuProps, message, Modal, Popconfirm, Spin } from "antd";
+import { Dropdown, MenuProps, message, Popconfirm } from "antd";
 import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
 import { deletePost, fetchComments, fetchPost, updatePost } from "../../api/postQueries";
 import RandomImage from "../../components/RandomImage";
+import PostModal from "../../components/Modal";
 
-const { TextArea } = Input;
 const Post = ({ post, comments }: { post: Post; comments: Comment[] }) => {
   const router = useRouter();
   const [openModal, setOpenModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [form] = Form.useForm<Post>();
 
   const handleDeletePost = () => {
     try {
@@ -34,7 +33,6 @@ const Post = ({ post, comments }: { post: Post; comments: Comment[] }) => {
       message.success("Post updated successfully");
       setOpenModal(false);
       setIsLoading(false);
-      form.resetFields();
     } catch {
       setIsLoading(false);
       message.error("something went wrong");
@@ -64,42 +62,13 @@ const Post = ({ post, comments }: { post: Post; comments: Comment[] }) => {
   ];
   return (
     <>
-      <Spin spinning={isLoading}>
-        <Modal
-          onCancel={() => setOpenModal(false)}
-          footer={null}
-          title="Update post"
-          open={openModal}
-        >
-          <Form
-            className="container max-w-[600px] flex flex-col"
-            onFinish={handleUpdatePost}
-            layout="vertical"
-            form={form}
-            name="article"
-          >
-            <Form.Item
-              label="Title"
-              name="title"
-              rules={[{ required: true, message: "Please input title!" }]}
-            >
-              <Input />
-            </Form.Item>
-            <Form.Item
-              label="Body"
-              name="body"
-              rules={[{ required: true, message: "Please input body!" }]}
-            >
-              <TextArea rows={4} />
-            </Form.Item>
-
-            <br />
-            <Button htmlType="submit" type="primary" className="mt-4 self-end">
-              Update Post
-            </Button>
-          </Form>
-        </Modal>
-      </Spin>
+      <PostModal
+        isLoading={isLoading}
+        setOpenModal={setOpenModal}
+        openModal={openModal}
+        onSubmit={handleUpdatePost}
+        buttonText={"Update Post"}
+      />
       ;
       <div>
         <Head>

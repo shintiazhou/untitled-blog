@@ -12,7 +12,7 @@ export const createPost = async (data: Post) => {
   });
 
   const json = await response.json();
-  console.log(json);
+  console.log("🚀 post successfully created", json);
 };
 export const updatePost = async (data: Post) => {
   const url = `https://jsonplaceholder.typicode.com/posts/${data.id}`;
@@ -26,7 +26,7 @@ export const updatePost = async (data: Post) => {
   });
 
   const json = await response.json();
-  console.log(json);
+  console.log("🚀 post successfully updated", json);
 };
 
 export const deletePost = async (postId: number) => {
