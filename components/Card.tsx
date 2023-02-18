@@ -7,7 +7,7 @@ const Card = ({ post }: { post: Post }) => {
   const router = useRouter();
   return (
     <div
-      className="py-4 border-b flex flex-col md:flex-row gap-4 md:items-center justify-between cursor-pointer"
+      className="py-4 my-4 border-b flex flex-col md:flex-row gap-4 md:items-center justify-between cursor-pointer"
       onClick={() => router.push("/posts/" + post.id)}
     >
       <div className="max-w-[1000px]">

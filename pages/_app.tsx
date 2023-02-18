@@ -6,7 +6,9 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Navbar />
-      <Component {...pageProps} />;
+      <div className="mt-16">
+        <Component {...pageProps} />;
+      </div>
     </>
   );
 }

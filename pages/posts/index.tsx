@@ -32,12 +32,12 @@ const Posts = ({ posts, currentPage, total }: Props) => {
       {posts ? (
         <main className="container mx-auto p-6 flex flex-col">
           <h1 className="text-2xl">Posts</h1>
-          <div className="mb-10 grid grid-cols-2 gap-10">
+          <div className="mb-10 flex flex-col lg:grid grid-cols-2 gap-x-10">
             {posts.map((post: Post) => (
               <Card post={post} key={post.id} />
             ))}
           </div>
-          <div className="self-end">
+          <div className="self-centerlg:self-end">
             <Pagination
               showSizeChanger={false}
               defaultCurrent={1}

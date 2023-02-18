@@ -10,6 +10,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: #323232;
 }
+.ant-btn-primary {
+  background-color: #0958d9;
+}
 @layer base {
   h1 {
     @apply text-xl;
